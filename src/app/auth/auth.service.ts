@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from '@angular/common/http';
 import {SERVER_API_URL} from '../app.constants';
+import {IUser} from '../interfaces/user';
 
 const TOKEN_KEY = 'TOKEN_KEY';
 
@@ -32,11 +33,11 @@ export class AuthService {
       });
   }
 
-  login(data: { username: string, password: string }) {
+  login(data: IUser) {
     return this.http.post(this.resourceUrl + '/login', data);
   }
 
-  register(data: { username: string, password: string }) {
-    return this.http.post(this.resourceUrl + '/register', data);
+  register(data: IUser) {
+    return this.http.post<IUser>(this.resourceUrl + '/register', data);
   }
 }
