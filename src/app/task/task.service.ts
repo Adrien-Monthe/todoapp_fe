@@ -16,15 +16,11 @@ export class TaskService {
   }
 
   update(data: ITask) {
-    return this.http.put<ITask>(this.BaseURL, data);
+    return this.http.put<ITask>(this.BaseURL + '/' + data.id, data);
   }
 
   getAll() {
     return this.http.get<ITask[]>(this.BaseURL);
-  }
-
-  getById(id: number) {
-    return this.http.get<ITask>(this.BaseURL + '/' + id);
   }
 
   delete(id: number) {
@@ -32,6 +28,6 @@ export class TaskService {
   }
 
   markAsDone(id: number) {
-    return this.http.put(this.BaseURL + '/' + id + '/done', {});
+    return this.http.post(this.BaseURL + '/' + id + '/complete', {});
   }
 }

@@ -32,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token != null) {
       let authHeader: HttpHeaders = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': "bearer " + token
+        'Authorization': "Bearer " + token
       });
       authReq = request.clone({
         headers: authHeader

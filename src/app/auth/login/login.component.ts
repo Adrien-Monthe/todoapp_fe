@@ -25,7 +25,7 @@ export class LoginComponent {
       .subscribe({
         next: (res: any) => {
           this.authService.saveToken(res.token);
-          this.router.navigate(['/tasks']); // redirect to tasks or dashboard later
+          this.router.navigate(['/tasks']);
         },
         error: () => this.error = 'Invalid username or password'
       });
