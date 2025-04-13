@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ITask} from '../interfaces/task';
 import {TaskService} from './task.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-task',
@@ -20,7 +21,8 @@ export class TaskComponent implements OnInit {
     description: ''
   };
 
-  constructor(private readonly taskService: TaskService) {
+  constructor(private readonly taskService: TaskService,
+              private readonly authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -86,6 +88,10 @@ export class TaskComponent implements OnInit {
       next: () => this.loadTasks(),
       error: (err) => console.error('Error deleting task', err),
     });
+  }
+
+  logout(): void {
+    this.authService.signOut();
   }
 }
 
